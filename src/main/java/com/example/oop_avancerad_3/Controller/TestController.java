@@ -12,6 +12,10 @@ public class TestController {
     @Autowired
     UserService userService;
     @GetMapping("/")
+    public String index() {
+        return "test";
+    }
+    @GetMapping("/makeNewUser")
     public String test() {
         User user = new User();
         user.setUserName("nr1user");

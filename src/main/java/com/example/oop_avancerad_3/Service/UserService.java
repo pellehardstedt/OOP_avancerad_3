@@ -21,7 +21,12 @@ public class UserService {
         byte[] salt = generateSalt();
         String saltString = convertByteToString(salt);
         String hashPass = createSecureHash(user.getPassword(), salt);
-        userRepository.save(user);
+        if(!hashPass.equals("")){
+            user.setSalt(saltString);
+            user.setPassword(hashPass);
+            userRepository.save(user);
+        }
+
     }
 
     public Boolean authUser(String username, String plainTextPassword){
@@ -56,6 +61,15 @@ public class UserService {
 
     private String convertByteToString(byte[] byteToString){
         return DatatypeConverter.printHexBinary(byteToString).toLowerCase(Locale.ROOT);
+    }
+
+    public Boolean deleteUser(String username){
+        User user = userRepository.findByUsername(username);
+        if(user == null){
+            return false;
+        }
+        userRepository.delete(user);
+        return true;
     }
 
 
