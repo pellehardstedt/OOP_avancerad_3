@@ -42,4 +42,19 @@ public class TestController {
         carService.saveCar(car);
         return "test";
     }
+
+    @GetMapping("/makeNewCar2")
+    public String testCar2(){
+        User user = userRepository.findByUsername("nr1user");
+        Car car = new Car();
+        car.setOwner(user);
+        car.setRegPlate("qwe123");
+        car.setNumberPassengers(2);
+        car.setLatitude("123");
+        car.setLongitude("456");
+        car.setType("SUV");
+        car.setCarDesc("nice car");
+        carService.saveCar(car);
+        return "test";
+    }
 }

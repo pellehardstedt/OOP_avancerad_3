@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class Car {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long carId;
@@ -16,7 +15,7 @@ public class Car {
     private String regPlate;
     //description of car, if needed
     private String carDesc;
-    //sedan, combi, SUV etc. the types could be a separate entity, and this just a reference to that.
+    //sedan, kombi, SUV etc. the types could be a separate entity, and this just a reference to that.
     private String type;
     //number of passengers, useful for users searching
     private int numberPassengers;
@@ -26,8 +25,8 @@ public class Car {
     private String longitude;
 
     public Car(){
-
     }
+
     public Car(User owner, String regPlate, String carDesc, String type, int numberPassengers, String latitude, String longitude){
         this.owner = owner;
         this.regPlate = regPlate;
@@ -59,7 +58,7 @@ public class Car {
     }
 
     public void setRegPlate(String regPlate) {
-        regPlate = regPlate;
+        this.regPlate = regPlate;
     }
 
     public String getCarDesc() {
@@ -67,7 +66,7 @@ public class Car {
     }
 
     public void setCarDesc(String carDesc) {
-        carDesc = carDesc;
+        this.carDesc = carDesc;
     }
 
     public String getType() {
