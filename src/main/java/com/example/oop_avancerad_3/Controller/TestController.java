@@ -18,7 +18,7 @@ public class TestController {
     UserRepository userRepository;
     @GetMapping("/")
     public String index() {
-        return "test";
+        return "signin";
     }
     @GetMapping("/makeNewUser")
     public String test() {
