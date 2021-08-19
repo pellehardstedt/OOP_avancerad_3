@@ -76,4 +76,9 @@ public class UserService {
         User user = userRepository.findByUsername(username);
         return user;
     }
+
+    public User getUserById(long id){
+        return userRepository.findById(id).orElseThrow();
+    }
+
 }
