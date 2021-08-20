@@ -16,6 +16,28 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PostMapping("/saveUser")
+    public String saveUserParam(@RequestParam("username") String username,
+                                @RequestParam("email") String email,
+                                @RequestParam("password") String password,
+                                @RequestParam("passwordTwo") String passwordTwo,
+                                HttpServletResponse response
+    ){
+        if(password.equals(passwordTwo)){
+            User user = new User();
+            user.setUserName(username);
+            user.setEmail(email);
+            user.setPassword(password);
+            userService.saveUser(user);
+            userService.saveUser(user);
+            Cookie cookie = new Cookie("currentUserId", user.getUserIdString());
+            cookie.setMaxAge(24 * 60 * 60);
+            response.addCookie(cookie);
+            return "redirect:/success";
+        }
+        return "redirect:/failed";
+    }
+
     @PostMapping("/loginUser")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
