@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.DatatypeConverter;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -26,7 +25,6 @@ public class UserService {
             user.setPassword(hashPass);
             userRepository.save(user);
         }
-
     }
 
     public Boolean authUser(String username, String plainTextPassword){
@@ -52,8 +50,7 @@ public class UserService {
 
     private byte[] generateSalt(){
         SecureRandom sr = new SecureRandom();
-        byte[] salt = sr.generateSeed(12);
-        return salt;
+        return sr.generateSeed(12);
     }
     private byte[] convertStringToByte(String stringToByte){
         return DatatypeConverter.parseHexBinary(stringToByte);
@@ -63,18 +60,16 @@ public class UserService {
         return DatatypeConverter.printHexBinary(byteToString).toLowerCase(Locale.ROOT);
     }
 
-    public Boolean deleteUser(String username){
+    public void deleteUser(String username){
         User user = userRepository.findByUsername(username);
         if(user == null){
-            return false;
+            return;
         }
         userRepository.delete(user);
-        return true;
     }
 
     public User getUserByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        return user;
+        return userRepository.findByUsername(username);
     }
 
     public User getUserById(long id){

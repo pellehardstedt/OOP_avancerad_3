@@ -29,7 +29,6 @@ public class UserController {
             user.setEmail(email);
             user.setPassword(password);
             userService.saveUser(user);
-            userService.saveUser(user);
             Cookie cookie = new Cookie("currentUserId", user.getUserIdString());
             cookie.setMaxAge(24 * 60 * 60);
             response.addCookie(cookie);
@@ -44,8 +43,14 @@ public class UserController {
                         Model model,
                         HttpServletResponse response
     ){
-        System.out.println("logging in...");
         User user = userService.getUserByUsername(username);
+        System.out.println(user.toString());
+
+        System.out.println("username");
+        System.out.println(username);
+        System.out.println("password");
+        System.out.println(password);
+
 
         if(user != null && userService.authUser(username, password)){
             Cookie cookie = new Cookie("currentUser", user.getUserIdString());
