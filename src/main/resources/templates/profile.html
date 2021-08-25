@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +8,10 @@
 <body>
 
 <h3>Hej!</h3>
-
+<p th:text="${user.getUserName()}"></p>
+<p th:text="${user.getFirstName()}"></p>
+<p th:text="${user.getLastName()}"></p>
+<p th:text="${user.getEmail()}"></p>
+<p th:text="${user.toString()}"></p>
 </body>
 </html>

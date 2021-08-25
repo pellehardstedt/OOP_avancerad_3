@@ -57,7 +57,8 @@ public class UserController {
             cookie.setMaxAge(24 * 60 * 60);
             response.addCookie(cookie);
             System.out.println("loggedin");
-            return "redirect:/success";
+            return "redirect:/userLoggedIn/" + user.getUserIdString();
+
         }
         System.out.println("login fail");
         return "redirect:/fail";
