@@ -12,6 +12,9 @@ public class Car {
     @JoinColumn(name = "userId")
     private User owner;
 
+    private String brand;
+    private String model;
+
     private String regPlate;
     //description of car, if needed
     private String carDesc;
@@ -25,16 +28,6 @@ public class Car {
     private String longitude;
 
     public Car(){
-    }
-
-    public Car(User owner, String regPlate, String carDesc, String type, int numberPassengers, String latitude, String longitude){
-        this.owner = owner;
-        this.regPlate = regPlate;
-        this.carDesc = carDesc;
-        this.type = type;
-        this.numberPassengers = numberPassengers;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
     public long getCarId() {
@@ -99,6 +92,22 @@ public class Car {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     @Override

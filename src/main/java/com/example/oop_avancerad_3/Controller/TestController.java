@@ -35,15 +35,6 @@ public class TestController {
     @Autowired
     CarService carService;
 
-
-    @GetMapping("/makeNewCar")
-    public String testCar(){
-        User user = userRepository.findByUsername("nr1user");
-        Car car = new Car(user, "abc123", "ford focus", "combi", 4, "123", "456");
-        carService.saveCar(car);
-        return "test";
-    }
-
     @GetMapping("/makeNewCar2")
     public String testCar2(){
         User user = userRepository.findByUsername("nr1user");
