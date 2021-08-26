@@ -91,5 +91,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/profile")
+    public String profile(@ModelAttribute("user") User user,
+                          Model model){
+        return "profile";
+    }
+
 
 }
