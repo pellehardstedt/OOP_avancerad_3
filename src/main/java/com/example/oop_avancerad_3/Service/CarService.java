@@ -6,6 +6,7 @@ import com.example.oop_avancerad_3.Repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -21,7 +22,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public List<Car> findCarsByUser(User user) {
+    public Collection<Car> findCarsByUser(User user) {
         return carRepository.findCarsByUser(user);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -28,8 +29,7 @@ public class UserController {
                                 @RequestParam("email") String email,
                                 @RequestParam("password") String password,
                                 @RequestParam("passwordTwo") String passwordTwo,
-                                HttpServletResponse response
-    ){
+                                HttpServletResponse response){
         if(password.equals(passwordTwo)){
             User user = new User();
             user.setUserName(username);
@@ -48,8 +48,7 @@ public class UserController {
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         Model model,
-                        HttpServletResponse response
-    ){
+                        HttpServletResponse response){
         User user = userService.getUserByUsername(username);
         System.out.println(user.toString());
 
@@ -91,11 +90,9 @@ public class UserController {
     @GetMapping("/userLoggedIn/{id}")
     public String userLoggedIn(@PathVariable("id") Long id,
                                Model model,
-                               @CookieValue("currentUserId") String currentUserId
-    ){
+                               @CookieValue("currentUserId") String currentUserId){
 
         /*
-
         this code should check if the current user is allowed on this url
 
         if(Long.valueOf(currentUserId) != id){
@@ -108,10 +105,9 @@ public class UserController {
         System.out.println("current dashboard:");
         System.out.println(id);
 
-
         User user = userService.getUserById(id);
 
-        List<Car> cars = carService.findCarsByUser(user);
+        Collection<Car> cars = carService.findCarsByUser(user);
 
         model.addAttribute("user", user);
         model.addAttribute("cars", cars);
@@ -125,6 +121,4 @@ public class UserController {
                           Model model){
         return "profile";
     }
-
-
 }

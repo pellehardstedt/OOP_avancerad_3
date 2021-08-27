@@ -29,9 +29,10 @@ public class CarController {
         @RequestParam("cardesc") String carDesc,
         @RequestParam("type") String type,
         @RequestParam("numberpassengers") int numberPassengers,
+        //@RequestParam("lat") String latitude,
+        //@RequestParam("long") String longitude,
         @CookieValue("currentUserId") String currentUserId
     ){
-
         //@RequestParam("lat") String latitude,
         //@RequestParam("long") String longitude
 

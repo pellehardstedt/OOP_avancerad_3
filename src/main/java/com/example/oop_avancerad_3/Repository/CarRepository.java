@@ -8,10 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
     @Query("SELECT c FROM Car c WHERE c.owner = :#{#user}")
-    List<Car> findCarsByUser(@Param("user") User user);
+    Collection<Car> findCarsByUser(@Param("user") User user);
+
+    @Query(value = "SELECT * FROM cars WHERE" +
+            "field1 LIKE '%val%' or" +
+            "field2 LIKE '%val%' or" +
+            "field3 LIKE '%val%' or" +
+            "field4 LIKE '%val%' or" +
+            "field5 LIKE '%val%'",
+            nativeQuery = true)
+    Collection<User> searchCars();
 }
