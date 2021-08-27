@@ -6,7 +6,10 @@ import com.example.oop_avancerad_3.Service.CarService;
 import com.example.oop_avancerad_3.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @Controller
 public class CarController {
@@ -17,8 +20,24 @@ public class CarController {
     UserService userService;
 
     @GetMapping("/addCar")
-    public String signUpView(@ModelAttribute("user") User user) {
+    public String addCar(@ModelAttribute("user") User user) {
         return "addCar";
+    }
+
+    @GetMapping("/searchCars")
+    public String searchCars(@ModelAttribute("user") User user,
+                             Model model) {
+
+        return "searchCars";
+    }
+
+    @PostMapping("/searchTerm")
+    public String searchTerm(@RequestParam("searchTerm") String searchTerm,
+                             Model model) {
+        System.out.println(searchTerm);
+        Collection<Car> cars = carService.searchCars(searchTerm);
+        model.addAttribute("cars", cars);
+        return "searchCars";
     }
 
     @PostMapping("/saveCar")
@@ -48,7 +67,7 @@ public class CarController {
         car.setOwner(user);
 
         carService.saveCar(car);
-        return "redirect:/profile";
+        return "redirect:/userLoggedIn/" + user.getUserIdString();
     }
 
 }

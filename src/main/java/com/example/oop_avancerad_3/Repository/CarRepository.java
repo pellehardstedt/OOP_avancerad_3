@@ -16,12 +16,11 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @Query("SELECT c FROM Car c WHERE c.owner = :#{#user}")
     Collection<Car> findCarsByUser(@Param("user") User user);
 
-    @Query(value = "SELECT * FROM cars WHERE" +
-            "field1 LIKE '%val%' or" +
-            "field2 LIKE '%val%' or" +
-            "field3 LIKE '%val%' or" +
-            "field4 LIKE '%val%' or" +
-            "field5 LIKE '%val%'",
-            nativeQuery = true)
-    Collection<User> searchCars();
+    @Query(value = "SELECT c FROM Car c WHERE c.brand " +
+            "LIKE CONCAT('%',:searchTerm,'%') or c.model " +
+            "LIKE CONCAT('%',:searchTerm,'%') or c.type " +
+            "LIKE CONCAT('%',:searchTerm,'%') or c.regPlate " +
+            "LIKE CONCAT('%',:searchTerm,'%') or c.carDesc " +
+            "LIKE CONCAT('%',:searchTerm,'%')")
+    Collection<Car> searchCars(@Param("searchTerm") String searchTerm);
 }

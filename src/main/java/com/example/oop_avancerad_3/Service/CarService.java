@@ -25,4 +25,9 @@ public class CarService {
     public Collection<Car> findCarsByUser(User user) {
         return carRepository.findCarsByUser(user);
     }
+
+    public Collection<Car> searchCars(String searchTerm) {
+        System.out.println(carRepository.searchCars(searchTerm));
+        return carRepository.searchCars(searchTerm);
+    }
 }

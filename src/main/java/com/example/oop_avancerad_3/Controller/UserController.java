@@ -106,10 +106,9 @@ public class UserController {
         System.out.println(id);
 
         User user = userService.getUserById(id);
+        model.addAttribute("user", user);
 
         Collection<Car> cars = carService.findCarsByUser(user);
-
-        model.addAttribute("user", user);
         model.addAttribute("cars", cars);
 
         return "profile";
