@@ -30,4 +30,7 @@ public class CarService {
         System.out.println(carRepository.searchCars(searchTerm));
         return carRepository.searchCars(searchTerm);
     }
+    public Car getCarById(Long id){
+        return carRepository.getById(id);
+    }
 }

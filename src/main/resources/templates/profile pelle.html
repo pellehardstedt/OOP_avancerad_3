@@ -54,7 +54,10 @@
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Your bookings</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div th:each="booking: ${bookings}">
+                        <p th:text="${booking.getCarReg()}" />
+                        <p th:text="${booking.getStartTime()}" />
+                    </div>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>

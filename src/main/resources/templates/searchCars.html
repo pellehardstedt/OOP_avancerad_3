@@ -45,12 +45,12 @@
     <div class="row">
       <div class="col-lg-3 d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
-          <div class="card-body">
+          <div class="card-body" th:data-id="${car.carId}">
             <h4 class="card-title" th:text="${car.regPlate}">Search cars.</h4>
             <p class="card-text" th:text="${car.brand}" />
             <p class="card-text" th:text="${car.model}" />
             <p class="card-text" th:text="${car.carDesc}" />
-            <a href="/searchCars" class="btn btn-primary">Book</a>
+            <a th:data-id="${car.carId}" href="#" class="btn btn-primary" onclick="booking(this);">Book</a>
           </div>
         </div>
       </div>
@@ -58,7 +58,9 @@
   </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="script.js"></script>
+<script src="bookingScript.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

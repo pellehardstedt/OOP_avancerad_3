@@ -1,7 +1,9 @@
 package com.example.oop_avancerad_3.Controller;
 
+import com.example.oop_avancerad_3.Entity.Booking;
 import com.example.oop_avancerad_3.Entity.Car;
 import com.example.oop_avancerad_3.Entity.User;
+import com.example.oop_avancerad_3.Service.BookingService;
 import com.example.oop_avancerad_3.Service.CarService;
 import com.example.oop_avancerad_3.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     CarService carService;
+
+    @Autowired
+    BookingService bookingService;
 
     @PostMapping("/saveUser")
     public String saveUserParam(@RequestParam("username") String username,
@@ -108,8 +113,13 @@ public class UserController {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
 
+        //this should be in Car Controller
         Collection<Car> cars = carService.findCarsByUser(user);
         model.addAttribute("cars", cars);
+
+        //this should be in Booking Controller
+        Collection<Booking> bookings = bookingService.findAllBookingsByRenter(user);
+        model.addAttribute("bookings", bookings);
 
         return "profile";
     }
