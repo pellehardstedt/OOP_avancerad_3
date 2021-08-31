@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -28,6 +27,11 @@ public class UserController {
 
     @Autowired
     BookingService bookingService;
+
+    @GetMapping("/")
+    public String index() {
+        return "signin";
+    }
 
     @PostMapping("/saveUser")
     public String saveUserParam(@RequestParam("username") String username,
@@ -61,7 +65,6 @@ public class UserController {
             Cookie cookie = new Cookie("currentUser", user.getUserIdString());
             cookie.setMaxAge(24 * 60 * 60);
             response.addCookie(cookie);
-            System.out.println("loggedin");
             return "redirect:/userLoggedIn/" + user.getUserIdString();
 
         }
@@ -98,17 +101,23 @@ public class UserController {
                                @CookieValue("currentUserId") String currentUserId){
 
         /*
-        this code should check if the current user is allowed on this url
+        this code check if the current user is allowed on this url
 
-        if(Long.valueOf(currentUserId) != id){
-            System.out.println("get out of here");
-            return "redirect:/wrongProfile";
-        }
-        */
         System.out.println("current logged in user:");
         System.out.println(currentUserId);
         System.out.println("current dashboard:");
         System.out.println(id);
+
+        System.out.println("currentUserId, id from url, do they match");
+        System.out.println(Long.valueOf(currentUserId));
+        System.out.println(Long.valueOf(id));
+        System.out.println(Long.valueOf(currentUserId) != id.longValue());
+        */
+        if(Long.valueOf(currentUserId) != id){
+            return "redirect:/wrongProfile";
+        }
+
+
 
         User user = userService.getUserById(id);
         model.addAttribute("user", user);

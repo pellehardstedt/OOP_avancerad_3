@@ -31,7 +31,7 @@ public class CarController {
         return "searchCars";
     }
 
-    @PostMapping("/searchTerm")
+    @PostMapping("/searchCars")
     public String searchTerm(@RequestParam("searchTerm") String searchTerm,
                              Model model) {
         System.out.println(searchTerm);
