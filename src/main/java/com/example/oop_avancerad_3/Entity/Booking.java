@@ -1,7 +1,6 @@
 package com.example.oop_avancerad_3.Entity;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 

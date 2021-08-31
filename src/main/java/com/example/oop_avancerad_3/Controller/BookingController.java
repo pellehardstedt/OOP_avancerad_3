@@ -23,7 +23,7 @@ public class BookingController {
     public String saveBooking(@PathVariable("id") Long carId,
                               @CookieValue("currentUserId") String currentUserId){
 
-        //should get user from model instead. cookie quick fix
+        //getting user from model instead. cookie quick fix
         User user = userService.getUserById(Long.parseLong(currentUserId));
 
         System.out.println("Car id:");

@@ -7,7 +7,6 @@ import com.example.oop_avancerad_3.Service.BookingService;
 import com.example.oop_avancerad_3.Service.CarService;
 import com.example.oop_avancerad_3.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +55,6 @@ public class UserController {
     @PostMapping("/loginUser")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
-                        Model model,
                         HttpServletResponse response){
         User user = userService.getUserByUsername(username);
         System.out.println(user.toString());
@@ -118,7 +116,7 @@ public class UserController {
         System.out.println(Long.valueOf(id));
         System.out.println(Long.valueOf(currentUserId) != id.longValue());
         */
-        if(Long.valueOf(currentUserId) != id){
+        if(Long.valueOf(currentUserId).equals(id)){
             return "redirect:/wrongProfile";
         }
 
@@ -135,10 +133,9 @@ public class UserController {
 
         return "profile";
     }
-    
+
     @GetMapping("/profile")
-    public String profile(@ModelAttribute("user") User user,
-                          Model model){
+    public String profile(@ModelAttribute("user") User user){
         return "profile";
     }
     @GetMapping("/logout")

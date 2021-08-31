@@ -21,12 +21,11 @@ public class CarController {
 
     @GetMapping("/addCar")
     public String addCar(@ModelAttribute("user") User user) {
-        return "addCar";
+        return "addcar";
     }
 
     @GetMapping("/searchCars")
-    public String searchCars(@ModelAttribute("user") User user,
-                             Model model) {
+    public String searchCars(@ModelAttribute("user") User user) {
 
         return "searchCars";
     }
