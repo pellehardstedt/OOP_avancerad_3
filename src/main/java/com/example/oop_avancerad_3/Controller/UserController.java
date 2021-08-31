@@ -62,7 +62,7 @@ public class UserController {
         System.out.println(user.toString());
 
         if(user != null && userService.authUser(username, password)){
-            Cookie cookie = new Cookie("currentUser", user.getUserIdString());
+            Cookie cookie = new Cookie("currentUserId", user.getUserIdString());
             cookie.setMaxAge(24 * 60 * 60);
             response.addCookie(cookie);
             return "redirect:/userLoggedIn/" + user.getUserIdString();
@@ -112,12 +112,15 @@ public class UserController {
         System.out.println(Long.valueOf(currentUserId));
         System.out.println(Long.valueOf(id));
         System.out.println(Long.valueOf(currentUserId) != id.longValue());
+
+        System.out.println("currentUserId, id from url, do they match");
+        System.out.println(Long.valueOf(currentUserId));
+        System.out.println(Long.valueOf(id));
+        System.out.println(Long.valueOf(currentUserId) != id.longValue());
         */
         if(Long.valueOf(currentUserId) != id){
             return "redirect:/wrongProfile";
         }
-
-
 
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
@@ -132,11 +135,17 @@ public class UserController {
 
         return "profile";
     }
-
-
+    
     @GetMapping("/profile")
     public String profile(@ModelAttribute("user") User user,
                           Model model){
         return "profile";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response){
+        Cookie cookie = new Cookie("currentUserId", "0");
+        cookie.setMaxAge(24 * 60 * 60);
+        response.addCookie(cookie);
+        return "signin";
     }
 }
