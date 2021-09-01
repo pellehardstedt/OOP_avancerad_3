@@ -110,13 +110,9 @@ public class UserController {
         System.out.println(Long.valueOf(currentUserId));
         System.out.println(Long.valueOf(id));
         System.out.println(Long.valueOf(currentUserId) != id.longValue());
-
-        System.out.println("currentUserId, id from url, do they match");
-        System.out.println(Long.valueOf(currentUserId));
-        System.out.println(Long.valueOf(id));
-        System.out.println(Long.valueOf(currentUserId) != id.longValue());
         */
-        if(Long.valueOf(currentUserId).equals(id)){
+        
+        if(Long.valueOf(currentUserId) != id.longValue()){
             return "redirect:/wrongProfile";
         }
 
