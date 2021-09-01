@@ -98,20 +98,6 @@ public class UserController {
                                Model model,
                                @CookieValue("currentUserId") String currentUserId){
 
-        /*
-        this code check if the current user is allowed on this url
-
-        System.out.println("current logged in user:");
-        System.out.println(currentUserId);
-        System.out.println("current dashboard:");
-        System.out.println(id);
-
-        System.out.println("currentUserId, id from url, do they match");
-        System.out.println(Long.valueOf(currentUserId));
-        System.out.println(Long.valueOf(id));
-        System.out.println(Long.valueOf(currentUserId) != id.longValue());
-        */
-        
         if(Long.valueOf(currentUserId) != id.longValue()){
             return "redirect:/wrongProfile";
         }
@@ -121,6 +107,11 @@ public class UserController {
 
         //this should be in Car Controller
         Collection<Car> cars = carService.findCarsByUser(user);
+        if(cars.isEmpty()){
+            Car car = new Car();
+            car.setRegPlate("You havent registered any cars.");
+            cars.add(car);
+        }
         model.addAttribute("cars", cars);
 
         //this should be in Booking Controller
@@ -140,5 +131,10 @@ public class UserController {
         cookie.setMaxAge(24 * 60 * 60);
         response.addCookie(cookie);
         return "signin";
+    }
+    @GetMapping("/toDashboard")
+    public String toDashboard(@CookieValue("currentUserId") String currentUserId){
+
+        return "redirect:/userLoggedIn/" + currentUserId;
     }
 }

@@ -26,11 +26,6 @@ public class BookingController {
         //getting user from model instead. cookie quick fix
         User user = userService.getUserById(Long.parseLong(currentUserId));
 
-        System.out.println("Car id:");
-        System.out.println(carId);
-        System.out.println("User username:");
-        System.out.println(user.getUserName());
-
         Booking booking = new Booking();
         Car car = carService.getCarById(carId);
         booking.setCar(car);

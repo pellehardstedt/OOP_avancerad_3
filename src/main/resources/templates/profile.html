@@ -19,114 +19,59 @@
 </head>
 
 <header>
-        <h1 class="h1-profile">Car <span>Sharing</span></h1>
-        <nav>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact Us</a></li>
-                <li><a href="">Log Out</a></li>
-            </ul>
-        </nav>
+    <h1 class="h1-profile">Car <span>Sharing</span></h1>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul>
+    </nav>
 </header>
-
-
-
-
-
-
 <body class="profile-body">
-
-<div class="container-cards">
-    <div class="row">
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Search cars.</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container-cards">
+        <div class="row">
+            <div class="col-lg-3 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Search cars.</h5>
+                        <p class="card-text">Here you can search for other users cars</p>
+                        <a href="/searchCars" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Your bookings</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="col-lg-3 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Your bookings</h5>
+                        <div th:each="booking: ${bookings}">
+                            <p th:text="${booking.getCarReg()}" />
+                            <p th:text="${booking.getStartTime()}" />
+                        </div>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Your cars</h5>
-                    <div th:each="car: ${cars}">
-                        <p th:text="${car.regPlate}" />
+            <div class="col-lg-3 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Your cars</h5>
+                        <div th:each="car: ${cars}">
+                            <p th:text="${car.regPlate}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Add car</h5>
+                        <p class="card-text">Here you can add a car that other users can rent.</p>
+                        <a href="/addCar" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Add car</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/addCar" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-<div class="container-cards">
-    <div class="row">
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 </body>
